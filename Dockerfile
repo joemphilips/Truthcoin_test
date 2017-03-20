@@ -3,6 +3,7 @@ MAINTAINER joemphilips
 
 RUN set -e \
     && pip install --upgrade pip \
-    && pip install plotly
+    && pip install plotly ipywidgets \
+    && jupyter nbextension enable --py widgetsnbextension
 
 
