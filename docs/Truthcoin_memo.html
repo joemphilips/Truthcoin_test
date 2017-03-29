@@ -11891,7 +11891,7 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -11922,24 +11922,43 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 初期値</span>
 <span class="c1"># n*m vote matrix, </span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of voters</span>
 <span class="n">M</span> <span class="o">=</span> <span class="mi">6</span> <span class="c1"># number of decisions</span>
-<span class="n">RV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="n">N</span><span class="p">)</span> <span class="c1"># initial Reputation Vector for each Voter</span>
+<span class="n">RV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># initial Reputation Vector for each Voter</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">RV</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[ 0.  ]
+ [ 0.25]
+ [ 0.5 ]
+ [ 0.75]
+ [ 1.  ]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[124]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">d1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="c1"># Non-Contraversial Binary Decision</span>
@@ -11964,15 +11983,32 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(5, 6)
+[ 1.  1.  1.  1.  1.  1.]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[123]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">VM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span><span class="p">,</span> <span class="n">d4</span><span class="p">,</span> <span class="n">d5</span><span class="p">,</span> <span class="n">d6</span><span class="p">))</span>
-<span class="n">VM</span> <span class="o">=</span> <span class="n">VM</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
-<span class="n">VM</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">VM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span><span class="p">,</span> <span class="n">d4</span><span class="p">,</span> <span class="n">d5</span><span class="p">,</span> <span class="n">d6</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">VM</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># 正規化前</span>
+<span class="n">VM</span> <span class="o">=</span> <span class="p">(</span><span class="n">VM</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">VM</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="c1"># Scalar値でも、投票範囲が[0,1]になるよう正規化</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">VM</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11983,13 +12019,21 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[   1.            0.          171.10985915   93.53984537    1.            1.        ]
+ [   1.            1.          255.76681197   91.65815194    1.            0.        ]
+ [   1.            0.          249.59841603  120.27508682    1.            1.        ]
+ [   1.            0.          196.85612618  216.19506194    0.            0.        ]
+ [   1.            1.          201.27566605  291.14515277    0.            0.        ]] 
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(5, 6)</pre>
+[[ 1.          0.          0.66900728  0.32128251  1.          1.        ]
+ [ 1.          1.          1.          0.31481943  1.          0.        ]
+ [ 1.          0.          0.97588274  0.41311039  1.          1.        ]
+ [ 1.          0.          0.76967033  0.74256796  0.          0.        ]
+ [ 1.          1.          0.7869499   1.          0.          0.        ]]
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -12016,7 +12060,7 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[125]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">VM_weighted</span> <span class="o">=</span> <span class="n">VM</span> <span class="o">*</span> <span class="n">CB</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
@@ -12047,7 +12091,7 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">])</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">VM</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
@@ -12067,15 +12111,15 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[126]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[  -0.71864382],
-       [ 192.62045487],
-       [ -23.06977981],
-       [-167.72364905],
-       [  -1.10838219]])</pre>
+<pre>array([[ 0.43329078],
+       [-0.25278416],
+       [ 0.26171171],
+       [ 0.12081105],
+       [-0.56302938]])</pre>
 </div>
 
 </div>
@@ -12099,7 +12143,7 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># honesty vector</span>
@@ -12119,16 +12163,16 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[ 167.00500522]
- [ 360.34410392]
- [ 144.65386924]
- [   0.        ]
- [ 166.61526686]] 
- [[ 1033.86036435]
- [ 1648.11273886]
- [  284.85416589]
- [    0.        ]
- [   29.75785243]]
+<pre>[[ 0.99632016]
+ [ 0.31024522]
+ [ 0.82474109]
+ [ 0.68384044]
+ [ 0.        ]] 
+ [[ 0.12118012]
+ [ 0.15308603]
+ [ 0.40190971]
+ [ 0.18814661]
+ [ 0.        ]]
 </pre>
 </div>
 </div>
@@ -12154,7 +12198,7 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[128]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">adjust</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
@@ -12195,20 +12239,35 @@ b. 代わりにブロックチェーンとその運用プロトコルを信用�
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[131]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stochastic_vectorize</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stochastic_vectorize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
 <span class="c1"># update Reputation Vector</span>
 <span class="n">RV</span> <span class="o">=</span> <span class="n">stochastic_vectorize</span><span class="p">(</span><span class="n">c_adj1_2</span> <span class="o">*</span> <span class="n">RV</span> <span class="o">/</span> <span class="n">RV</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 
 <span class="c1"># 投票の判定</span>
 <span class="n">Outcome</span> <span class="o">=</span> <span class="n">stochastic_vectorize</span><span class="p">(</span><span class="n">RV</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">VM</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Outcome</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[ 0.28762655  0.00688805  0.25208128  0.16411658  0.14808779  0.14119974]]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
